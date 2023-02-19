@@ -10,21 +10,11 @@ import Markdown from 'react-native-markdown-display';
 
 function IssuePost() {
   const route = useRoute<RouteProp<RootStackParams, 'IssuePost'>>();
-  const {data, isLoading, isError} = useIssuePost({
+  const {data, isError} = useIssuePost({
     owner: 'angular',
     repo: 'angular-cli',
     issueNumber: route.params.issueNumber,
   });
-
-  if (isLoading) {
-    return (
-      <SafeAreaView>
-        <View style={{alignItems: 'center', paddingTop: 24}}>
-          <CText>이슈를 가져오고 있습니다...</CText>
-        </View>
-      </SafeAreaView>
-    );
-  }
 
   if (isError) {
     return (
@@ -43,9 +33,13 @@ function IssuePost() {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         style={{flex: 1, paddingHorizontal: 12}}>
-        <IssueHeader data={data!} />
-        {/*@ts-ignore*/}
-        <Markdown>{data?.content}</Markdown>
+        {data && (
+          <>
+            <IssueHeader data={data} />
+            {/*@ts-ignore*/}
+            <Markdown>{data.content}</Markdown>
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
