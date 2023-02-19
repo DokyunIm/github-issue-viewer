@@ -35,3 +35,27 @@ export async function reqGetIssueList({
     },
   });
 }
+
+export interface ReqGetIssueParams {
+  owner: string;
+  repo: string;
+  issueNumber: string;
+}
+export async function reqGetIssue({
+  owner,
+  repo,
+  issueNumber,
+}: ReqGetIssueParams) {
+  const axiosInstance = axios.create({
+    baseURL: 'https://api.github.com',
+    headers: {
+      Accept: 'application/vnd.github+json',
+      Authorization: `Bearer ${ENV_MAP.GITHUB_TOKEN}`,
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  });
+
+  return await axiosInstance.get(
+    `/repos/${owner}/${repo}/issues/${issueNumber}`,
+  );
+}
