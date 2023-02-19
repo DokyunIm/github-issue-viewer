@@ -1,5 +1,4 @@
 import axios from 'axios';
-import ENV_MAP from '../../environments';
 
 export interface ReqGetIssueListParams {
   owner: string;
@@ -21,7 +20,6 @@ export async function reqGetIssueList({
     baseURL: 'https://api.github.com',
     headers: {
       Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${ENV_MAP.GITHUB_TOKEN}`,
       'X-GitHub-Api-Version': '2022-11-28',
     },
   });
@@ -50,7 +48,6 @@ export async function reqGetIssue({
     baseURL: 'https://api.github.com',
     headers: {
       Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${ENV_MAP.GITHUB_TOKEN}`,
       'X-GitHub-Api-Version': '2022-11-28',
     },
   });
