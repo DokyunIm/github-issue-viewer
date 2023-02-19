@@ -2,11 +2,11 @@ import React, {useEffect, useRef} from 'react';
 import {BackHandler} from 'react-native';
 import {WebView} from 'react-native-webview';
 import styled from 'styled-components/native';
-import SafeAreaView from '@component/common/SafeAreaView';
-import {CText} from '@component/common/Text';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '@type/navigation.type';
+import SafeAreaView from '@component/common/SafeAreaView';
+import {CText} from '@component/common/Text';
 
 const Header = styled.View`
   flex-direction: row;
@@ -21,6 +21,7 @@ const CloseButton = styled.TouchableOpacity`
 
 const UrlView = styled.View`
   width: 50%;
+  align-items: center;
 `;
 
 function WebviewInApp() {
@@ -49,7 +50,7 @@ function WebviewInApp() {
   };
 
   return (
-    <SafeAreaView edges={['top', 'bottom']}>
+    <SafeAreaView edges={['top', 'bottom', 'left', 'right']}>
       <Header>
         <CloseButton onPress={onPressClose}>
           <CText size={16}>X</CText>

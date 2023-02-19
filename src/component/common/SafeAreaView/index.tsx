@@ -9,7 +9,10 @@ interface SafeAreaViewProps {
   edges?: ReadonlyArray<Edge>;
 }
 
-function SafeAreaView({children, edges = ['bottom']}: SafeAreaViewProps) {
+function SafeAreaView({
+  children,
+  edges = ['bottom', 'left', 'right'],
+}: SafeAreaViewProps) {
   const DefaultStyle = {
     flex: 1,
     backgroundColor: '#ffffff',
